@@ -1,20 +1,22 @@
 package Phase2;
 
 public class Event {
-	private String title,dateTime,location;
+	private String title,date,time,location;
 	private Contact contact;
 	LinkedList<Contact> contacts = new LinkedList<>();
-	public Event(String title, String dateTime, String location, Contact contact) {
+	public Event(String title, String date, String time,String location, Contact contact) {
 		super();
 		this.title = title;
-		this.dateTime = dateTime;
+		this.date = date;
+		this.time = time;
 		this.location = location;
 		this.contact = contact;
 	}
-	public Event(String title, String dateTime, String location, LinkedList<Contact> contacts) {
+	public Event(String title, String date,String time, String location, LinkedList<Contact> contacts) {
 		super();
 		this.title = title;
-		this.dateTime = dateTime;
+		this.date = date;
+		this.time = time;
 		this.location = location;
 		this.contacts = contacts;
 	}
@@ -28,11 +30,17 @@ public class Event {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getDateTime() {
-		return dateTime;
+	public String getDate() {
+		return date;
 	}
-	public void setDateTime(String dateTime) {
-		this.dateTime = dateTime;
+	public void setDate(String time) {
+		this.date = time;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
 	}
 	public String getLocation() {
 		return location;
@@ -48,7 +56,7 @@ public class Event {
 	}
 	@Override
 	public String toString() {
-		return "Event [title: " + title + ", dateTime: " + dateTime + ", location: " + location + ", contact: " + contact.getName()
+		return "Event [title: " + title + ", date: " + date + "time: "+time+", location: " + location + ", contact: " + contact.getName()
 				+ "]";
 	}
 

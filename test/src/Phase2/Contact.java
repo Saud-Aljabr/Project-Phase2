@@ -1,11 +1,11 @@
 package Phase2;
 
 
-public class Contact implements Comparable<Contact> {
+public class Contact implements Comparable<String> {
 	
 	private String name, email, address, birthday, notes;
 	private int phoneNum;
-	//LinkedList <Event> eventCon = new LinkedList<>(); // list for events connected with the contact
+	LinkedList <Event> eventCon = new LinkedList<>(); // list for events connected with the contact
 
 	
 	public Contact() {
@@ -23,8 +23,8 @@ public class Contact implements Comparable<Contact> {
 	}
 
 	@Override
-	public int compareTo(Contact o) { //  negative means this.name comes before o.name
-		return name.compareToIgnoreCase(o.name);
+	public int compareTo(String n) { //  negative means this.name comes before o.name
+		return name.compareToIgnoreCase(n);
 
 	}
 
@@ -75,9 +75,9 @@ public class Contact implements Comparable<Contact> {
 	public void setPhoneNum(int phoneNum) {
 		this.phoneNum = phoneNum;
 	}
-	/*public void addEvent(Event e) {
+	public void addEvent(Event e) {
 		eventCon.insert(e);
-	}*/
+	}
 
 	@Override
 	public String toString() {
