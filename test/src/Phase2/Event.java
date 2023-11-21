@@ -3,7 +3,7 @@ package Phase2;
 public class Event {
 	private String title,date,time,location;
 	private Contact contact;
-	LinkedList<Contact> contacts = new LinkedList<>();
+	private	LinkedList<Contact> contacts = new LinkedList<>();
 	public Event(String title, String date, String time,String location, Contact contact) {
 		super();
 		this.title = title;
@@ -53,6 +53,16 @@ public class Event {
 	}
 	public void setContact(Contact contact) {
 		this.contact = contact;
+	}
+	public boolean searchContact(Contact con) {
+		contacts.findFirst();
+		while(!contacts.last()) {
+			if (contacts.retrieve() == con)
+				return true;
+		}
+		if (contacts.retrieve() == con)
+			return true;
+		return false;
 	}
 	@Override
 	public String toString() {

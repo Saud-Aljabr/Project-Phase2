@@ -22,12 +22,8 @@ public class contactBST  {
 	
 	public boolean insert(Contact c) {
 		BSTNode node = new BSTNode(c);
-		if (searchKey(c.getName())== null) {
-			root = insertHelper(root,node);
-			return true;
-			}
-		else 
-			return false;
+		root = insertHelper(root,node);
+		return true;
 	}
 	private BSTNode insertHelper(BSTNode root, BSTNode node) {
 		
@@ -123,5 +119,58 @@ public class contactBST  {
 			root = root.right;
 		return root.data;
 	}
+	public Contact travPhoneNum(int phoneNum) {
+		return travPhoneNumHelper(root,phoneNum);
+	}
+	private Contact travPhoneNumHelper(BSTNode root, int phoneNum) {
+		if (root == null)
+			return null;
+		Contact result = travPhoneNumHelper(root.left, phoneNum);
+		if (result!=null)
+			return result;
+		if (root.data.getPhoneNum()==phoneNum)
+			return root.data;
+		return travPhoneNumHelper(root.right, phoneNum);
+	}
+	public Contact travEmail(String email) {
+		return travEmailHelper(root,email);
+	}
+	private Contact travEmailHelper(BSTNode root, String email) {
+		if (root == null)
+			return null;
+		Contact result = travEmailHelper(root.left, email);
+		if (result!=null)
+			return result;
+		if (root.data.getEmail().equalsIgnoreCase(email))
+			return root.data;
+		return travEmailHelper(root.right, email);
+	}
+	public Contact travBirthDay(String BirthDay) {
+		return travBirthDayHelper(root,BirthDay);
+	}
+	private Contact travBirthDayHelper(BSTNode root, String BirthDay) {
+		if (root == null)
+			return null;
+		Contact result = travBirthDayHelper(root.left, BirthDay);
+		if (result!=null)
+			return result;
+		if (root.data.getBirthday().equalsIgnoreCase(BirthDay))
+			return root.data;
+		return travBirthDayHelper(root.right, BirthDay);
+	}
+	public Contact travAddress(String Address) {
+		return travAddressHelper(root,Address);
+	}
+	private Contact travAddressHelper(BSTNode root, String Address) {
+		if (root == null)
+			return null;
+		Contact result = travAddressHelper(root.left, Address);
+		if (result!=null)
+			return result;
+		if (root.data.getAddress().equalsIgnoreCase(Address))
+			return root.data;
+		return travAddressHelper(root.right, Address);
+	}
+
 
 }
