@@ -5,7 +5,7 @@ public class Contact implements Comparable<String> {
 	
 	private String name, email, address, birthday, notes;
 	private int phoneNum;
-	LinkedList <Event> eventCon = new LinkedList<>(); // list for events connected with the contact
+//	LinkedList <Event> eventCon = new LinkedList<>(); // list for events connected with the contact
 
 	
 	public Contact() {
@@ -75,9 +75,9 @@ public class Contact implements Comparable<String> {
 	public void setPhoneNum(int phoneNum) {
 		this.phoneNum = phoneNum;
 	}
-	public void addEvent(Event e) {
+/*	public void addEvent(Event e) {
 		eventCon.insert(e);
-	}
+	}*/
 
 	@Override
 	public String toString() {

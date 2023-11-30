@@ -158,19 +158,19 @@ public class contactBST  {
 			return root.data;
 		return travBirthDayHelper(root.right, BirthDay);
 	}
-	public Contact travAddress(String Address) {
-		return travAddressHelper(root,Address);
-	}
-	private Contact travAddressHelper(BSTNode root, String Address) {
-		if (root == null)
-			return null;
-		Contact result = travAddressHelper(root.left, Address);
-		if (result!=null)
-			return result;
-		if (root.data.getAddress().equalsIgnoreCase(Address))
-			return root.data;
-		return travAddressHelper(root.right, Address);
-	}
+	 public Contact travAddress(String Address) {
+			return travAddressHelper(root,Address);
+		}
+		private Contact travAddressHelper(BSTNode root, String Address) {
+			if (root == null)
+				return null;
+			Contact result = travAddressHelper(root.left, Address);
+			if (result!=null)
+				return result;
+			if (root.data.getAddress().equalsIgnoreCase(Address)) // here u should print 
+				return root.data;
+			return travAddressHelper(root.right, Address);
+		}
 
 
 }

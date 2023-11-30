@@ -2,9 +2,10 @@ package Phase2;
 
 public class Event {
 	private String title,date,time,location;
-	private Contact contact;
-	private	LinkedList<Contact> contacts = new LinkedList<>();
-	public Event(String title, String date, String time,String location, Contact contact) {
+	public Contact contact;
+	public	LinkedList<Contact> contacts = new LinkedList<>();
+	private String contactsNames;
+	public Event(String title, String date, String time,String location, Contact contact) { // for appointment
 		super();
 		this.title = title;
 		this.date = date;
@@ -12,7 +13,7 @@ public class Event {
 		this.location = location;
 		this.contact = contact;
 	}
-	public Event(String title, String date,String time, String location, LinkedList<Contact> contacts) {
+	public Event(String title, String date,String time, String location, LinkedList<Contact> contacts) { // for event
 		super();
 		this.title = title;
 		this.date = date;
@@ -21,8 +22,8 @@ public class Event {
 		this.contacts = contacts;
 	}
 	
-	public int compareTo(Event e) { //  this method for comparing alphabetically, negative means this.title comes before e.title
-		return title.compareToIgnoreCase(e.title);
+	public int compareTo(String title) { //  this method for comparing alphabetically, negative means this.title comes before e.title
+		return title.compareToIgnoreCase(title);
 	}
 	public String getTitle() {
 		return title;
@@ -54,16 +55,17 @@ public class Event {
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
-	public boolean searchContact(Contact con) {
+	public boolean searchContact(String name) {
 		contacts.findFirst();
 		while(!contacts.last()) {
-			if (contacts.retrieve() == con)
+			if (contacts.retrieve().getName().equalsIgnoreCase(name))
 				return true;
 		}
-		if (contacts.retrieve() == con)
+		if (contacts.retrieve().getName().equalsIgnoreCase(name))
 			return true;
 		return false;
 	}
+	
 	@Override
 	public String toString() {
 		return "Event [title: " + title + ", date: " + date + "time: "+time+", location: " + location + ", contact: " + contact.getName()
