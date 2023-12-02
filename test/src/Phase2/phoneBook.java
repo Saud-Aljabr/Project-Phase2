@@ -118,17 +118,87 @@ public class phoneBook<T> {
 				System.out.println("Event Not Found !");
 		}
 		else
-			eventTree.travContactName(s);
+			eventTree.travContactName(s); // if search criteria is contact Name
 		
 		
 		
 	}
 	
-	
-	// try
-	public void deleteevent(String tit) {
-		eventTree.remove_Key(tit);
+	public void printEventAlpha() {
+		if (eventTree.empty())
+			System.out.println("No Events");
+		else
+			eventTree.travAlphbetically();
+	}
+	public void printFirstName(String firstName) {
+		contactTree.travFirstName(firstName);
+	}
+	public boolean checkBirthday(String s) { // checking if birthday is correct
+		int day=-1,mon=-1,yr = -1;
+		int index =0 ;
+		for (int i = 0; i < s.length(); i++) {
+			if (day == -1 && s.charAt(i) == '/' ) {
+				day = Integer.parseInt(s.substring(index, i));
+				index = i;
+				}
+			else if (mon == -1 &&s.charAt(i) == '/') {
+				mon = Integer.parseInt(s.substring(index+1, i));
+				index = i;
+			}
+			else if (yr == -1 && i == s.length()-1) {
+				yr = Integer.parseInt(s.substring(index+1, s.length()));
+				index = i;
+			}
+		}
 		
+		if(day > 31 || day <0 || mon>12 || mon<0 || yr>2023 || yr<1900)
+			return false;
+		else 
+			return true;
+	}
+	public boolean checkDate(String s){
+		int day=-1,mon=-1,yr = -1;
+		int index =0 ;
+		try {
+		for (int i = 0; i < s.length(); i++) {
+			if (day == -1 && s.charAt(i) == '/' ) {
+				day = Integer.parseInt(s.substring(index, i));
+				index = i;
+				}
+			else if (mon == -1 &&s.charAt(i) == '/') {
+				mon = Integer.parseInt(s.substring(index+1, i));
+				index = i;
+			}
+			else if (yr == -1 && i == s.length()-1) {
+				yr = Integer.parseInt(s.substring(index+1, s.length()));
+				index = i;
+			}
+		}
+		
+		if(day > 31 || day <0 || mon>12 || mon<0 || yr>2030 || yr<2023) // غيرها يوم المناقشة
+			return false;
+		else 
+			return true;
+		}catch(NumberFormatException e) {
+			System.out.println("Enter in this form day/month/year ");
+			return false;
+			}
+	}
+
+	public boolean checkTime(String s) {
+		try {
+			int hour = Integer.parseInt(s.substring(0, 2));
+			int minuate = Integer.parseInt(s.substring(0, 2));
+
+			if (hour < 0 || hour > 23 || minuate < 0 || minuate > 60)
+				return false;
+			else
+				return true;
+
+		} catch (NumberFormatException e) {
+			System.out.println("Enter in this format HH:MM");
+			return false;
+		}
 	}
 	
 }

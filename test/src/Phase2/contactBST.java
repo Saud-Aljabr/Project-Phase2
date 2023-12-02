@@ -167,6 +167,35 @@ public class contactBST  {
 				return root.data;
 			return travAddressHelper(root.right, Address);
 		}
+		public void travFirstName(String s) {
+			travFirstNameHelper(root, s);
+		}
 
+		private void travFirstNameHelper(BSTNode root, String name) {
 
+			if (root == null) {
+				return;
+			}
+			if (firstName(root.data.getName()).equalsIgnoreCase(name)) {
+				System.out.println(root.data.toString());
+
+			}
+
+			int key = root.data.compareTo(name);
+			if (key > 0) {
+				travFirstNameHelper(root.left, name);
+			} else {
+				travFirstNameHelper(root.right, name);
+			}
+
+		}
+		private String firstName(String name) {
+			int spaceindex = 0;
+			for (int i = 0; i < name.length(); i++) // this loop is to detect the space
+				if (name.charAt(i) == ' ') {
+					spaceindex = i;
+					break;
+				}
+			return name.substring(0, spaceindex);
+		}
 }

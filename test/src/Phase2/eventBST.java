@@ -140,20 +140,20 @@ public class eventBST {
 			return;
 		deleteConEventHelper(root.left, con);
 		LinkedList<Contact> contacts = root.dataEvent.contacts;
-		if (contacts.empty()) { 
+		if (contacts.empty() && root.dataEvent.contact.getPhoneNum() == con.getPhoneNum()) {  // it means the current event is an appointment
 			remove_Key(root.dataEvent.getTitle());
 			}
-		else if(!contacts.empty()) {
+		else if(!contacts.empty()) { // it means its an event (more than one contact)
 			contacts.findFirst();
 			while (!contacts.last()) {
-				if (contacts.retrieve() == con)
+				if (contacts.retrieve().getPhoneNum() == con.getPhoneNum())
 					contacts.remove();
 				else
 					contacts.findNext();
 				}
-			if (contacts.retrieve() == con)
+			if (contacts.retrieve().getPhoneNum() == con.getPhoneNum())
 				contacts.remove();
-			if (contacts.empty())
+			if (contacts.empty()) // if the deleted contact was the only contact in the event then the event will be deleted
 				remove_Key(root.dataEvent.getTitle());
 		}
 		deleteConEventHelper(root.right, con);
@@ -161,6 +161,7 @@ public class eventBST {
 	public void travContactName(String conName) {
 		travContactNameHelper(root, conName);
 	}
+
 	private void travContactNameHelper(BSTNode root, String conName) {
 		if (root != null) {
 			travContactNameHelper(root.left, conName);
@@ -175,7 +176,7 @@ public class eventBST {
 					if (tmp.retrieve().getName().equalsIgnoreCase(conName)) {
 						System.out.println(root.dataEvent.toStringEvent());
 						break;
-						}
+					}
 					tmp.findNext();
 				}
 				if (tmp.retrieve().getName().equalsIgnoreCase(conName))
@@ -184,5 +185,18 @@ public class eventBST {
 			travContactNameHelper(root.right, conName);
 		}
 
+	}
+	public void travAlphbetically() {
+		travAlphbeticallyHelper(root);
+	}
+	private void travAlphbeticallyHelper(BSTNode root) {
+		if (root!=null) {
+		travAlphbeticallyHelper(root.left);
+		if (root.dataEvent.contacts.empty())
+			System.out.println(root.dataEvent.toStringAppointment());
+		else
+			System.out.println(root.dataEvent.toStringEvent());
+		travAlphbeticallyHelper(root.right);
+		}
 	}
 }
