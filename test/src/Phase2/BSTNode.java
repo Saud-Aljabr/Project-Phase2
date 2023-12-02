@@ -6,9 +6,9 @@ package Phase2;
 		public Event dataEvent;
 		public BSTNode left, right;
 		
-		public BSTNode(Event dataEvent) {
+		public BSTNode(Event val) {
 			left = right = null;
-			this.dataEvent = dataEvent;
+			dataEvent = val;
 		}
 		public BSTNode(Contact val) {
 			data = val;

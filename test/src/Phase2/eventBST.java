@@ -64,7 +64,7 @@ public class eventBST {
 		} else if (root.dataEvent.getTitle().equalsIgnoreCase(title)) {
 			return root.dataEvent;
 		} else {
-			int key = root.data.compareTo(title);
+			int key = root.dataEvent.compareTo(title);
 			if (key > 0) {
 				return searchKeyHelper(root.left, title);
 			} else {
@@ -140,14 +140,16 @@ public class eventBST {
 			return;
 		deleteConEventHelper(root.left, con);
 		LinkedList<Contact> contacts = root.dataEvent.contacts;
-		if (contacts == null && root.dataEvent.contact == con) { 
+		if (contacts.empty()) { 
 			remove_Key(root.dataEvent.getTitle());
 			}
-		else if(contacts != null) {
+		else if(!contacts.empty()) {
 			contacts.findFirst();
-			while (contacts.last()) {
+			while (!contacts.last()) {
 				if (contacts.retrieve() == con)
 					contacts.remove();
+				else
+					contacts.findNext();
 				}
 			if (contacts.retrieve() == con)
 				contacts.remove();
@@ -155,5 +157,32 @@ public class eventBST {
 				remove_Key(root.dataEvent.getTitle());
 		}
 		deleteConEventHelper(root.right, con);
+	}
+	public void travContactName(String conName) {
+		travContactNameHelper(root, conName);
+	}
+	private void travContactNameHelper(BSTNode root, String conName) {
+		if (root != null) {
+			travContactNameHelper(root.left, conName);
+			// below if its an appointment
+			if (root.dataEvent.contacts.empty() && root.dataEvent.contact.getName().equalsIgnoreCase(conName))
+				System.out.println(root.dataEvent.toStringAppointment());
+			// below if its an Event (multiple people)
+			else if (!root.dataEvent.contacts.empty()) {
+				LinkedList<Contact> tmp = root.dataEvent.contacts;
+				tmp.findFirst();
+				while (!tmp.last()) {
+					if (tmp.retrieve().getName().equalsIgnoreCase(conName)) {
+						System.out.println(root.dataEvent.toStringEvent());
+						break;
+						}
+					tmp.findNext();
+				}
+				if (tmp.retrieve().getName().equalsIgnoreCase(conName))
+					System.out.println(root.dataEvent.toStringEvent());
+			}
+			travContactNameHelper(root.right, conName);
+		}
+
 	}
 }

@@ -25,24 +25,23 @@ public class contactBST  {
 		root = insertHelper(root,node);
 		return true;
 	}
+
 	private BSTNode insertHelper(BSTNode root, BSTNode node) {
-		
+
 		if (root == null) {
-			root = current =node;
-			
+			root = current = node;
+
+			return root;
+		} else {
+			int key = root.data.compareTo(node.data.getName());
+			if (key > 0) {
+				root.left = insertHelper(root.left, node);
+			} else {
+				root.right = insertHelper(root.right, node);
+			}
 			return root;
 		}
-		else {
-		int key = root.data.compareTo(node.data.getName());
-		if(key > 0) {
-			root.left = insertHelper(root.left, node);
-		}
-		else {
-			root.right = insertHelper(root.right, node);
-		}
-		return root;
 	}
-		}
 	public void display() {
 		displayHelper(root);
 	}
@@ -88,18 +87,15 @@ public class contactBST  {
 			int key = root.data.compareTo(name);
 			if (key > 0) {
 				root.left = remove_KeyHelper(root.left, name);
-			}
-			else if (key < 0) {
+			} else if (key < 0) {
 				root.right = remove_KeyHelper(root.right, name);
-			}
-			else {
+			} else {
 				if (root.left == null && root.right == null)
 					root = null;
 				else if (root.right != null) {
 					root.data = successor(root);
 					root.right = remove_KeyHelper(root.right, root.data.getName());
-				}
-				else {
+				} else {
 					root.data = predecessor(root);
 					root.left = remove_KeyHelper(root.left, root.data.getName());
 				}
@@ -128,7 +124,7 @@ public class contactBST  {
 		Contact result = travPhoneNumHelper(root.left, phoneNum);
 		if (result!=null)
 			return result;
-		if (root.data.getPhoneNum()==phoneNum)
+		if (root.data.getPhoneNum()== phoneNum)
 			return root.data;
 		return travPhoneNumHelper(root.right, phoneNum);
 	}

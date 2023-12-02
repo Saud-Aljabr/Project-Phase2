@@ -22,8 +22,8 @@ public class Event {
 		this.contacts = contacts;
 	}
 	
-	public int compareTo(String title) { //  this method for comparing alphabetically, negative means this.title comes before e.title
-		return title.compareToIgnoreCase(title);
+	public int compareTo(String t) { //  this method for comparing alphabetically, negative means this.title comes before e.title
+		return title.compareToIgnoreCase(t);
 	}
 	public String getTitle() {
 		return title;
@@ -66,10 +66,22 @@ public class Event {
 		return false;
 	}
 	
-	@Override
-	public String toString() {
+
+	public String toStringAppointment() {
 		return "Event [title: " + title + ", date: " + date + "time: "+time+", location: " + location + ", contact: " + contact.getName()
 				+ "]";
+	}
+	public String toStringEvent() {
+		String tmp = "";
+		contacts.findFirst();
+		while(!contacts.last()) {
+			tmp += "{"+contacts.retrieve().getName()+"}";
+			contacts.findNext();
+			}
+			
+		tmp += "{"+contacts.retrieve().getName()+"}";
+		return "Event [title: " + title + ", date: " + date + "time: "+time+", location: " + location + ", contact: " + tmp
+		+ "]";
 	}
 
 }
