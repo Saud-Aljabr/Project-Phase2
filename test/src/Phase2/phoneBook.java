@@ -97,30 +97,12 @@ public class phoneBook<T> {
 	private boolean checkConflict(String Date,String Time) { // to check if there is conflict in Date or Time in events
 		return eventTree.travDateTime(Date, Time) != null;   // true for conflict , false for NO conflict
 	}
-
-	public void displayContact() {
-		contactTree.display();
-	}
-	public void displayEvent() {
-		eventTree.display();
-	}
 	public void searchEvent(String s, int x) {
 		if (x == 1) {							// 1 if search criteria is Title
-		Event tmp = eventTree.searchKey(s);
-		
-			if (tmp != null) {
-				if (tmp.contact!=null)
-					System.out.println(tmp.toStringAppointment());
-				else 
-					System.out.println(tmp.toStringEvent());
-				}
-			else 
-				System.out.println("Event Not Found !");
+			eventTree.printEvent(s);
 		}
 		else
 			eventTree.travContactName(s); // if search criteria is contact Name
-		
-		
 		
 	}
 	

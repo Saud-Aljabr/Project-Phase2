@@ -186,6 +186,26 @@ public class eventBST {
 		}
 
 	}
+	public void printEvent(String titl) {
+		printEventHelper(root,titl);
+	}
+	private void printEventHelper(BSTNode root, String titl) {
+		if (root == null) {
+			return ;
+		} 
+		if (root.dataEvent.getTitle().equalsIgnoreCase(titl)) {
+				if (root.dataEvent.contacts.empty())
+					System.out.println(root.dataEvent.toStringAppointment());
+				else 
+					System.out.println(root.dataEvent.toStringEvent());
+		} 
+			int key = root.dataEvent.compareTo(titl);
+			if (key > 0) 
+				printEventHelper(root.left, titl);
+			 else 
+				printEventHelper(root.right, titl);
+			
+	}
 	public void travAlphbetically() {
 		travAlphbeticallyHelper(root);
 	}
@@ -199,4 +219,5 @@ public class eventBST {
 		travAlphbeticallyHelper(root.right);
 		}
 	}
+	
 }

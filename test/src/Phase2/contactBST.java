@@ -2,7 +2,7 @@ package Phase2;
 
 public class contactBST  {
 	BSTNode root, current;
-	
+	boolean flag = true;
 	
 	public contactBST() {
 		root = current = null;
@@ -167,6 +167,7 @@ public class contactBST  {
 				return root.data;
 			return travAddressHelper(root.right, Address);
 		}
+
 		public void travFirstName(String s) {
 			travFirstNameHelper(root, s);
 		}
@@ -178,7 +179,6 @@ public class contactBST  {
 			}
 			if (firstName(root.data.getName()).equalsIgnoreCase(name)) {
 				System.out.println(root.data.toString());
-
 			}
 
 			int key = root.data.compareTo(name);
@@ -189,6 +189,7 @@ public class contactBST  {
 			}
 
 		}
+
 		private String firstName(String name) {
 			int spaceindex = 0;
 			for (int i = 0; i < name.length(); i++) // this loop is to detect the space
