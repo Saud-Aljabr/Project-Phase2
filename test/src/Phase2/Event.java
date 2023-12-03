@@ -4,7 +4,6 @@ public class Event {
 	private String title,date,time,location;
 	public Contact contact;
 	public	LinkedList<Contact> contacts = new LinkedList<>();
-	private String contactsNames;
 	public Event(String title, String date, String time,String location, Contact contact) { // for appointment
 		super();
 		this.title = title;

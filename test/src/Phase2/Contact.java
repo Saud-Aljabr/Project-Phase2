@@ -75,10 +75,6 @@ public class Contact implements Comparable<String> {
 	public void setPhoneNum(int phoneNum) {
 		this.phoneNum = phoneNum;
 	}
-/*	public void addEvent(Event e) {
-		eventCon.insert(e);
-	}*/
-
 	@Override
 	public String toString() {
 		return "Contact [name:" + name + ", email:" + email + ", address:" + address + ", birthday:" + birthday
